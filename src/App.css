@@ -1,12 +1,174 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.board-container{
-  height: 100dvh;
+/* Game container styling */
+.board-container {
+  height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+  padding: 20px !important;
+  color: white;
+  text-align: center;
+}
+
+/* Game title */
+.board-container h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+/* Player info and game status */
+.board-container p {
+  font-size: 1.5rem;
+  margin: 1rem 0 2rem 0 !important;
+  padding: 0.5rem 1rem !important;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Board styling */
+.board {
+  width: 300px !important;
+  height: 300px !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Square styling */
+.square {
+  width: 90px !important;
+  height: 90px !important;
+  font-size: 2.5rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.square:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* X and O styling */
+.square[data-value="X"] {
+  color: greenyellow;
+}
+
+.square[data-value="O"] {
+  color: orange;
+}
+
+/* Restart button */
+button:not(.square) {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px !important;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 10px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:not(.square):hover {
+  background-color: #f57c00;
+  transform: scale(1.05);
+}
+
+/* Current player highlight */
+span[data-value="X"] {
+  color: greenyellow;
+  font-weight: bold;
+}
+
+span[data-value="O"] {
+  color: orange;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.square:active {
+  animation: pop 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+  .board {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .square {
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 2rem;
+  }
+
+  .board-container h1 {
+    font-size: 2rem;
+  }
+
+  .board-container p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Winner celebration */
+@keyframes celebrate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
