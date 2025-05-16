@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Square from "./Square";
 
 const WIN_CONDITION = [
@@ -11,7 +11,10 @@ const WIN_CONDITION = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-
+const PLAYER = {
+  X: "X",
+  O: "O",
+};
 export const Board = () => {
   const [currentPlayer, setCurrentPlayer] = useState("X");
   const [gameOverText, setGameOverText] = useState("");
@@ -25,22 +28,20 @@ export const Board = () => {
   };
   const checkWin = (currentPlayer, tempBoard) => {
     return WIN_CONDITION.some((condition) =>
-      condition.every((index) => tempBoard[index] === currentPlayer)
+      condition.every((index) => tempBoard[index] === PLAYER[currentPlayer])
     );
   };
   const handleClick = (number) => {
     if (boardStatus[number] === "" && gameStatus) {
       const tempBoard = [...boardStatus];
-      tempBoard[number] = currentPlayer;
+      tempBoard[number] = PLAYER[currentPlayer];
       setBoardStatus(tempBoard);
       if (checkWin(currentPlayer, tempBoard)) {
-        setBoardStatus(tempBoard);
-        setGameOverText(`Kazanan : ${currentPlayer}`);
+        setGameOverText(`Kazanan : ${PLAYER[currentPlayer]}`);
         setGameStatus(false);
         return;
       }
       if (!tempBoard.includes("")) {
-        setBoardStatus(tempBoard);
         setGameStatus(false);
         setGameOverText("Berabere !");
         return;
@@ -57,7 +58,7 @@ export const Board = () => {
         </p>
       ) : (
         <p>
-          <span data-value={currentPlayer}>{gameOverText}</span>{" "}
+          <span data-value={currentPlayer}>{gameOverText}</span>
           <button onClick={restartGame}>Restart</button>
         </p>
       )}
