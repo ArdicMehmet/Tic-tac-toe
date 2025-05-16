@@ -20,7 +20,7 @@ export const Board = () => {
   useEffect(() => {
     if (gameStatus && !boardStatus.includes("")) {
       setGameStatus(false);
-      setGameOverText("It ended in a draw");
+      setGameOverText("Berabere !");
     }
   }, [boardStatus]);
   const restartGame = () => {
