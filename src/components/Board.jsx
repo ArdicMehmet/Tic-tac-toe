@@ -17,7 +17,6 @@ export const Board = () => {
   const [gameOverText, setGameOverText] = useState("");
   const [gameStatus, setGameStatus] = useState(true);
   const [boardStatus, setBoardStatus] = useState(Array(9).fill(""));
-  useEffect(() => {}, [boardStatus]);
   const restartGame = () => {
     setBoardStatus(Array(9).fill(""));
     setGameStatus(true);
