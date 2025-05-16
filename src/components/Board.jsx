@@ -17,12 +17,7 @@ export const Board = () => {
   const [gameOverText, setGameOverText] = useState("");
   const [gameStatus, setGameStatus] = useState(true);
   const [boardStatus, setBoardStatus] = useState(Array(9).fill(""));
-  useEffect(() => {
-    if (gameStatus && !boardStatus.includes("")) {
-      setGameStatus(false);
-      setGameOverText("Berabere !");
-    }
-  }, [boardStatus]);
+  useEffect(() => {}, [boardStatus]);
   const restartGame = () => {
     setBoardStatus(Array(9).fill(""));
     setGameStatus(true);
@@ -40,11 +35,18 @@ export const Board = () => {
       tempBoard[number] = currentPlayer;
       setBoardStatus(tempBoard);
       if (checkWin(currentPlayer, tempBoard)) {
+        setBoardStatus(tempBoard);
         setGameOverText(`Kazanan : ${currentPlayer}`);
         setGameStatus(false);
-      } else {
-        currentPlayer === "X" ? setCurrentPlayer("O") : setCurrentPlayer("X");
+        return;
       }
+      if (!tempBoard.includes("")) {
+        setBoardStatus(tempBoard);
+        setGameStatus(false);
+        setGameOverText("Berabere !");
+        return;
+      }
+      currentPlayer === "X" ? setCurrentPlayer("O") : setCurrentPlayer("X");
     }
   };
   return (
