@@ -141,8 +141,8 @@ span[data-value="O"] {
 /* Responsive design */
 @media (max-width: 500px) {
   .board {
-    width: 240px !important;
-    height: 240px !important;
+    width: 250px !important;
+    height: 250px !important;
   }
 
   .square {
